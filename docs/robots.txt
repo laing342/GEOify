@@ -1,4 +1,4 @@
-# robots.txt for icitymuze.com
+# robots.txt for laing342.github.io/GEOify
 # Allow: Baidu, Shenma, ByteDance, Bing, and AI crawlers
 User-agent: Baiduspider
 Allow: /
@@ -20,4 +20,4 @@ User-agent: Diffbot
 Allow: /
 User-agent: *
 Allow: /
-Sitemap: https://icitymuze.com/sitemap.xml
+Sitemap: https://laing342.github.io/GEOify/sitemap.xml
