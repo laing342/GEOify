@@ -9,7 +9,7 @@ export const siteConfig = {
     name: '轻遇星',
     englishName: 'iCityMuze',
     tagline: 'AI驱动的O2O社交陪护与灵活就业平台',
-    domain: 'laing342.github.io/GEOify',
+    domain: 'qyuxing.icu',
   },
 
   // FAQ 问答（≥6 问，答案先行 ≤80 字）
