@@ -4,6 +4,7 @@ import { Command } from '@commander-js/extra-typings'
 import chalk from 'chalk'
 import fs from 'fs-extra'
 import { initCommand } from './commands/init.js'
+import { generateSite } from './commands/generate-site.js'
 import { executeBashScript, parseCommandTemplate } from './utils/bash-runner.js'
 
 const program = new Command()
@@ -237,6 +238,15 @@ program
   .action(() => {
     console.log(chalk.yellow('⚠️  /geo-analyze 命令将在 v0.2.0 实现'))
     console.log(chalk.gray('敬请期待!'))
+  })
+
+// Generate-Site 命令 — 生成完整 GEO 优化静态演示站
+program
+  .command('generate-site')
+  .description('生成完整的 GEO 优化静态演示站点（HTML + robots.txt + sitemap.xml + llms.txt + JSON-LD）')
+  .option('-o, --out <path>', '输出目录', './dist')
+  .action((options) => {
+    generateSite(options.out)
   })
 
 // 解析命令

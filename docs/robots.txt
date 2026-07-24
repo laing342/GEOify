@@ -1,0 +1,23 @@
+# robots.txt for icitymuze.com
+# Allow: Baidu, Shenma, ByteDance, Bing, and AI crawlers
+User-agent: Baiduspider
+Allow: /
+User-agent: YisouSpider
+Allow: /
+User-agent: Bytespider
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Diffbot
+Allow: /
+User-agent: *
+Allow: /
+Sitemap: https://icitymuze.com/sitemap.xml
