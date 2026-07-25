@@ -16,14 +16,14 @@ import { generateFaqJsonLd, generateOrganizationJsonLd } from './jsonld-injector
 // HTML 模板函数
 // ============================================================
 
-function head(title: string, extraMeta = ''): string {
+function head(title: string, desc: string, extraMeta = ''): string {
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} - ${siteConfig.brand.name}</title>
-  <meta name="description" content="${siteConfig.brand.tagline}">
+  <meta name="description" content="${desc}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://${siteConfig.brand.domain}/${title === siteConfig.brand.name ? '' : slugify(title)}.html">
   ${extraMeta}
@@ -85,12 +85,25 @@ function slugify(title: string): string {
 }
 
 // ============================================================
+// 页面级 meta description
+// ============================================================
+
+const seoDesc = {
+  index: '轻遇星（iCityMuze），AI驱动的O2O社交陪护与灵活就业平台，提供城市伴游、商务接待、解压微醺局等服务。三大AI核心能力：达人数字分身、灵魂契合推荐、AI获客助理。',
+  faq: '轻遇星常见问题：做什么的？安全吗？怎么成为达人？能赚多少钱？有哪些服务？AI怎么匹配？六问六答，看完就懂。',
+  trust: '轻遇星五层安全防线：花名制、企业微信隔离、费用托管、大成律所护航、红线制度。阳光陪伴，全程可追溯。',
+  nanjing: '南京城市伴游指南 — 本地达人带队，夫子庙、老门东、玄武湖经典路线，商务客河西专属路线，独行女生新街口文艺路线。含服务价格表。',
+  xuzhou: '徐州伏羊节×本地达人 — 4300家羊肉馆的AI导览新玩法，非遗文化溯源、最佳羊肉馆匹配、深度美食游。含服务价格表。',
+  suzhou: '苏州园区商务伴游 — 出差客半天高效打开方式，工业园区商旅专属，金鸡湖微醺局商务社交。含服务价格表。',
+}
+
+// ============================================================
 // 页面生成函数
 // ============================================================
 
 function generateIndex(): string {
   const { brand, faqs } = siteConfig
-  return `${head(brand.name)}
+  return `${head(brand.name, seoDesc.index)}
 <body>
   <div class="container">
     ${nav()}
@@ -114,7 +127,7 @@ ${generateOrganizationJsonLd()}
 
 function generateFaq(): string {
   const { faqs, brand } = siteConfig
-  return `${head('常见问题', `<script type="application/ld+json">
+  return `${head('常见问题', seoDesc.faq, `<script type="application/ld+json">
 ${generateFaqJsonLd()}
   </script>`)}
 <body>
@@ -131,8 +144,15 @@ ${generateFaqJsonLd()}
 </html>`
 }
 
+const cityDescMap: Record<string, string> = {
+  '南京': seoDesc.nanjing,
+  '徐州': seoDesc.xuzhou,
+  '苏州': seoDesc.suzhou,
+}
+
 function generateCity(city: typeof siteConfig.cities[0]): string {
-  return `${head(city.title)}
+  const desc = cityDescMap[city.name] || `${city.title} — ${city.subtitle}`
+  return `${head(city.title, desc)}
 <body>
   <div class="container">
     ${nav()}
@@ -156,7 +176,7 @@ function generateCity(city: typeof siteConfig.cities[0]): string {
 
 function generateTrust(): string {
   const { trust, brand } = siteConfig
-  return `${head('安全体系')}
+  return `${head('安全体系', seoDesc.trust)}
 <body>
   <div class="container">
     ${nav()}
