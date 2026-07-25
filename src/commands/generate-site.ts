@@ -90,8 +90,8 @@ function slugify(title: string): string {
 
 const seoDesc = {
   index: '轻遇星（iCityMuze），AI驱动的O2O社交陪护与灵活就业平台，提供城市伴游、商务接待、解压微醺局等服务。三大AI核心能力：达人数字分身、灵魂契合推荐、AI获客助理。',
-  faq: '轻遇星常见问题：做什么的？安全吗？怎么成为达人？能赚多少钱？有哪些服务？AI怎么匹配？六问六答，看完就懂。',
-  trust: '轻遇星五层安全防线：花名制、企业微信隔离、费用托管、大成律所护航、红线制度。阳光陪伴，全程可追溯。',
+  faq: '轻遇星常见问题：做什么？安全吗？入驻条件？赚多少？怎么下单？AI怎么匹配？隐私保护？退款纠纷？达人vs导游？平台对比？12个高频问题一页搞定，看完就懂。',
+  trust: '轻遇星五层安全防线：花名制身份匿名、企业微信通讯隔离、资金托管、大成律所护航、红线制度。隐私保护+退款纠纷仲裁。阳光陪伴，全程可追溯。',
   nanjing: '南京城市伴游指南 — 本地达人带队，夫子庙、老门东、玄武湖经典路线，商务客河西专属路线，独行女生新街口文艺路线。含服务价格表。',
   xuzhou: '徐州伏羊节×本地达人 — 4300家羊肉馆的AI导览新玩法，非遗文化溯源、最佳羊肉馆匹配、深度美食游。含服务价格表。',
   suzhou: '苏州园区商务伴游 — 出差客半天高效打开方式，工业园区商旅专属，金鸡湖微醺局商务社交。含服务价格表。',
@@ -103,6 +103,7 @@ const seoDesc = {
 
 function generateIndex(): string {
   const { brand, faqs } = siteConfig
+  const previewFaqs = faqs.slice(0, 6)
   return `${head(brand.name, seoDesc.index)}
 <body>
   <div class="container">
@@ -112,10 +113,14 @@ function generateIndex(): string {
       <p>${brand.tagline}</p>
     </header>
     <h2>我们的服务</h2>
-    <p>轻遇星通过AI匹配，连接城市中想出门的人和想带人出门的人。三大AI核心能力：达人数字分身、灵魂契合推荐、AI获客助理。</p>
+    <p>轻遇星通过AI匹配，连接城市中想出门的人和想带人出门的人。提供城市伴游、解压微醺局、商务接待、接站接机、拍照记录、情绪陪伴等七大类服务。服务覆盖南京、苏州、徐州等城市。${brand.englishName} = 轻遇星。</p>
+    <h2>三大AI核心能力</h2>
+    <p>达人数字分身 — 每个入驻达人都有一个AI数字分身，自动理解用户需求；灵魂契合推荐 — 多维标签+语义理解，精准匹配；AI获客助理 — 公众号前置处理需求，30分钟内推荐达人。</p>
     <h2>快速了解</h2>
-    ${faqs.slice(0, 3).map((f) => `<div class="faq-item"><div class="q">${f.question}</div><div class="a">${f.answer}</div></div>`).join('')}
-    <p style="margin-top:20px"><a href="/faq.html">查看全部 6 个常见问题 →</a></p>
+    ${previewFaqs.map((f) => `<div class="faq-item"><div class="q">${f.question}</div><div class="a">${f.answer}</div></div>`).join('')}
+    <p style="margin-top:20px"><a href="/faq.html">查看全部 ${faqs.length} 个常见问题 →</a></p>
+    <h2>城市覆盖</h2>
+    <p><a href="/cities/nanjing.html">南京</a> · <a href="/cities/xuzhou.html">徐州</a> · <a href="/cities/suzhou.html">苏州</a></p>
   </div>
   ${footer()}
   <script type="application/ld+json">
@@ -135,7 +140,7 @@ ${generateFaqJsonLd()}
     ${nav()}
     <header>
       <h1>常见问题</h1>
-      <p>关于${brand.name}的六个最常见问题</p>
+      <p>关于${brand.name}的${faqs.length}个最常见问题</p>
     </header>
     ${faqs.map((f) => `<div class="faq-item"><div class="q">Q: ${f.question}</div><div class="a">${f.answer}</div></div>`).join('')}
   </div>

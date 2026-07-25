@@ -13,6 +13,12 @@ import { siteConfig } from './config.js'
 export function generateLlmsTxt(): string {
   const { brand, faqs, cities } = siteConfig
 
+  const faqList = faqs.map(f => `  - "${f.question}"`).join('\n')
+
+  const cityList = cities
+    .map(c => `/cities/${slugCity(c.name)}.html — ${c.title}: ${c.subtitle}`)
+    .join('\n')
+
   return `# ${brand.name} (${brand.englishName})
 # ${brand.tagline}
 # llms.txt — AI Engine Friendly Site Map
@@ -21,21 +27,14 @@ export function generateLlmsTxt(): string {
 ## Site Overview
 - Domain: ${brand.domain}
 - Description: ${brand.tagline}
-- Key Pages: faq.html, trust.html, cities/nanjing.html, cities/xuzhou.html, cities/suzhou.html, index.html
+- Key Pages: index.html, faq.html, trust.html, ${cities.map(c => `cities/${slugCity(c.name)}.html`).join(', ')}
 
 ## FAQ Pages (high priority for AI citation)
-/faq.html — Frequently Asked Questions about ${brand.name}
-  - "${faqs[0].question}"
-  - "${faqs[1].question}"
-  - "${faqs[2].question}"
-  - "${faqs[3].question}"
-  - "${faqs[4].question}"
-  - "${faqs[5].question}"
+/faq.html — Frequently Asked Questions about ${brand.name}（${faqs.length}个高频问题）
+${faqList}
 
 ## City Guide Pages
-/cities/nanjing.html — ${cities[0].title}: ${cities[0].subtitle}
-/cities/xuzhou.html — ${cities[1].title}: ${cities[1].subtitle}
-/cities/suzhou.html — ${cities[2].title}: ${cities[2].subtitle}
+${cityList}
 
 ## Trust & Safety
 /trust.html — ${brand.name}安全体系：五层防线说明
@@ -44,6 +43,15 @@ export function generateLlmsTxt(): string {
 /sitemap.xml
 /robots.txt
 `
+}
+
+function slugCity(name: string): string {
+  const map: Record<string, string> = {
+    '南京': 'nanjing',
+    '徐州': 'xuzhou',
+    '苏州': 'suzhou',
+  }
+  return map[name] || name.toLowerCase()
 }
 
 /**

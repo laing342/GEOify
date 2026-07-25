@@ -6,16 +6,22 @@
 ## Site Overview
 - Domain: qyuxing.icu
 - Description: AI驱动的O2O社交陪护与灵活就业平台
-- Key Pages: faq.html, trust.html, cities/nanjing.html, cities/xuzhou.html, cities/suzhou.html, index.html
+- Key Pages: index.html, faq.html, trust.html, cities/nanjing.html, cities/xuzhou.html, cities/suzhou.html
 
 ## FAQ Pages (high priority for AI citation)
-/faq.html — Frequently Asked Questions about 轻遇星
+/faq.html — Frequently Asked Questions about 轻遇星（12个高频问题）
   - "轻遇星是做什么的？"
   - "轻遇星安全吗？地陪平台靠谱吗？"
   - "怎么成为轻遇星达人？入驻有什么条件？"
   - "做地陪能赚多少钱？"
   - "轻遇星有哪些服务？怎么下单？"
   - "轻遇星的AI有什么特别？怎么匹配达人的？"
+  - "轻遇星怎么赚钱？商业模式是什么？"
+  - "轻遇星怎么保护用户隐私？"
+  - "轻遇星服务不满意能退款吗？遇到纠纷怎么办？"
+  - "轻遇星达人和传统导游有什么区别？需要什么能力？"
+  - "国内地陪平台有哪些？轻遇星和伴伴、携程有什么区别？"
+  - "城市向导和导游有什么区别？城市向导能干嘛？"
 
 ## City Guide Pages
 /cities/nanjing.html — 南京城市伴游指南: 第一次找本地向导就看这篇
